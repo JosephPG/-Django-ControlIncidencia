@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block username %}
+  {{user.usuario}}
+{% endblock %}
+
+{% block reporte-menu %}
+  {% if user.is_asesor == False %}
+  <li><a href="#" data-toggle="modal" data-target="#myModalReporte"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Reporte</a></li>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not vacio %}
+<div class="body-content">
+
+  <div class="row title-data">
+    <h3><b>Perfil usuario</b></h3>
+  </div>
+
+  <div class="row cuerpo-data">
+    <div class="data-user">
+      <div class="row">
+
+
+        <!-- Block perfil-usuario -->
+        <div class="col-sm-3">
+          <div class="data-foto">
+            <img src="{% static 'img/phto.jpg' %}" alt="User" class="img-thumbnail" height="100" width="100">
+          </div>
+        </div>
+        <div class="col-sm-9 c-p-h-data">
+
+          <div class="row row-profile">
+              <div class="form-horizontal ">
+
+              {% if perfil %}
+              <div class="profile-group">
+                  <div class="row">
+                    <div class="col-xs-8 text-left">
+                      <div><label>Nombres</label></div>
+                      <div class="data">{{perfil.nombre}}</div>
+                    </div>
+                    <div class="col-xs-4 text-right">
+                      <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="profile-group">
+                  <div class="row">
+                    <div class="col-xs-8 text-left">
+                      <div><label>Apellidos</label></div>
+                      <div class="data">{{perfil.ape_pat}} {{perfil.ape_mat}}</div>
+                    </div>
+                    <div class="col-xs-4 text-right">
+                      <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="profile-group">
+                  <div class="row">
+                    <div class="col-xs-8 text-left">
+                      <div><label>Tipo de usuario</label></div>
+                      <div class="data">{% if asesor %} Asesor {% else %} Back Office {% endif %}</div>
+                    </div>
+                    <div class="col-xs-4 text-right">
+                      <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="profile-group-last">
+                  <div class="row">
+                    <div class="col-xs-8 text-left">
+                      <div><label>Nombre usuario</label></div>
+                      <div class="data">{{perfil.usuario}}</div>
+                    </div>
+                    <div class="col-xs-4 text-right">
+                      <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </div>
+                  </div>
+              </div>
+              {% endif %}
+              </div>
+          </div>
+        </div>
+        <!-- Block perfil-usuario -->
+      </div>
+    </div>
+  </div>
+
+  <div class="row cuerpo-data">
+
+    <div class="cuerpo-inci">
+      <!-- Block perfil-usuario -->
+      <h4 style="color:#355c7d"><b>Incidencias participadas</b></h4><br>
+      {% if ultimos %}
+      <div class="table-responsive">
+        <table class="table table-hover" style="color: #646464">
+            <thead>
+                <tr>
+                  <th>N° Incidencia</th>
+                  <th>Cliente</th>
+                  <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for det in ultimos %}
+                <tr>
+                  <td>{{det.0}}</td>
+                  <td>{{det.1}}</td>
+                  <td>{{det.2|yesno:"Cerrado,Generado"}}</td>
+                  <td><a class="btn btn-info" href="{% url 'incidencia:buscar_incidencia' det.0 %}"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+      {% else %}
+        <div class="row text-center"><h2 style="color:#afaaaa;">Sin incidencias</h2></div>
+      {% endif %}
+      <!-- Block perfil-usuario -->
+    </div>
+  </div>
+</div>
+
+{% endif %}
+{% endblock %}

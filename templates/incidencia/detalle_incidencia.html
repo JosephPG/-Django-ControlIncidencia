@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Detalle Incidencia {{id}}{% endblock %}
+
+{% block username %}
+  {{user.usuario}}
+{% endblock %}
+
+{% block reporte-menu %}
+  {% if user.is_asesor == False %}
+  <li><a href="#" data-toggle="modal" data-target="#myModalReporte"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Reporte</a></li>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="body-content">
+
+  <div class="row title-data">
+    <h3><b><!--Cambiar Titulo-->Agregar detalle a Incidencia N° {{id}}</b></h3>
+    <div class=""></div>
+  </div>
+
+  <div class="row cuerpo-data">
+    <div class="data-user">
+      <div class="row">
+
+        <!-- Block cliente-encontrado -->
+        <div class="col-sm-9 c-p-h-data" style="float:none;margin:0 auto">
+
+          {% if form %}
+          <form method="post">
+            {% csrf_token %}
+          <div class="row row-profile">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label for="{{form.detalle.name}}" style="color: #646464;padding-bottom:20px">{{form.detalle.label}}</label>
+                  {{form.detalle}}
+
+                  <div class="row text-center" style="padding-top:20px">
+                    <button class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                  </div>
+                </div>
+                </div>
+          </div>
+          </form>
+          {% endif %}
+
+        </div>
+        <!-- Block cliente-encontrado  -->
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

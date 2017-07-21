@@ -1,0 +1,88 @@
+
+
+.c-p-h-edit {
+	width: 100%;
+	text-align: right;
+	padding-right: 10px;
+	height: 10px;
+}
+.c-p-h-edit a {
+	color: #fff;
+}
+.c-p-h-img {
+	width: 100%;
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+
+
+
+
+.c-p-h-data .row {
+	margin-right: 0px;
+	margin-left: 0px;
+}
+/*
+.c-p-h-data .row-profile {
+	padding-top: 13px;
+}*/
+.profile-group {
+	padding: 15px 0px 15px 0px;
+	border-bottom: 1px solid rgba(1, 1, 1, 0.1);
+	font-size: 15px;
+	font-weight: 600;
+	color: #646464;
+}
+.profile-group-last {
+	padding: 15px 0px 15px 0px;
+	font-size: 15px;
+	font-weight: 600;
+	color: #646464;
+}
+.profile-group .data {
+	font-weight: 400;
+}
+.profile-group-last .data {
+	font-weight: 400;
+}
+.profile-group i {
+	font-size: 22px;
+}
+.profile-group-last i {
+	font-size: 22px;
+}
+.profile-group .col-xs-4 {
+	margin-top: 15px;
+}
+.profile-group-last .col-xs-4 {
+	margin-top: 15px;
+}
+.c-p-h-data .row-info {
+	margin-top: 10px;
+}
+.c-p-h-data .row-profile .col-sm-8 {
+	padding-top: 15px;
+	padding-bottom: 20px;
+	background-color: #fff;
+}
+.c-p-h-data .row-profile .col-sm-4 {
+	padding-left: 10px;
+}
+.c-p-h-data .row-profile .col-sm-4 .asis-per {
+	padding: 10px 10px 20px 10px;
+	background-color: #fff;
+	color: #646464;
+	text-align: center;
+	font-size: 15px;
+}
+
+@media(max-width: 767px) {
+	
+	.c-p-h-data .row-profile .col-sm-4 {
+	  margin-top: 10px;
+	  padding: 0;
+	}
+	.c-p-h-data .row-profile .col-sm-4 .asis-per {
+	  background-color: #fff;
+	}
+}

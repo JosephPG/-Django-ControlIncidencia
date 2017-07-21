@@ -1,0 +1,21 @@
+COMANDDOS MQ
+============
+
+DSPMQ               		-- Permite visualizar los QMs y su estatus.
+crtmqm -u DLQ <nameQM>		-- Creacion del QM y definicon del nombre del nuevo dead letter queue.
+crtmqm -u DLQ QMPROMO01
+
+strmqm <nameQM>				-- Inicializa el QM gestor de colas
+strmqm QMPROMO01
+
+runmqsc <nameQM>			-- Permite por manipular los obejtos(componentes) MQ del QM.
+runmqsc QMPROMO01
+
+define qlocal(Qname)			-- comando para crear colas Locales
+define qlocal(DLQ)
+def ql(DLQ)
+
+Display ql(Qname)			-- Visualizar la exitencia y las propiedades de la cola.
+Display ql(DLQ)
+Dis ql(DLQ)
+

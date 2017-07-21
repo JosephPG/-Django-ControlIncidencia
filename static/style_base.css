@@ -1,0 +1,143 @@
+.dropper1 {
+	min-width: 100%;
+}
+
+
+a:focus {
+		outline:0px;
+}
+
+.navbarpropio {
+    background-color: #355c7d;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #e0e0e0;
+}
+
+.navbar-default .navbar-brand {
+    color: #e0e0e0;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #fff;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+    color: #fff;
+    background-color: transparent;
+}
+
+.navbarcustom {
+	float: right;
+}
+
+.dropcustom {
+	min-width: 50px;
+	background-color: #355c7d;
+}
+
+.dropcustom>li>a {
+	 color: #e0e0e0;
+}
+
+.dropcustom>li>a:hover{
+	 color: #fff;
+	 background-color: transparent;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: #4b7192;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #e0e0e0;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #355c7d;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+     background-color: #2f506b;
+}
+
+@media (max-width: 767px){
+
+	.navbarcustom {
+		 float: none;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: #e0e0e0;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+    color: #fff;
+    background-color: transparent;
+	}
+}
+
+.navbar {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 0px;
+  border: 1px solid transparent;
+}
+
+.row {
+	margin-right: 0;
+    margin-left: 0;
+}
+
+.body-content {
+	max-width: 1200px;
+	height: 400px; /* Borrar */
+	margin: 0 auto;
+}
+
+.title-data {
+	padding-bottom: 5px;
+	padding-left: 15px;
+	padding-top: 20px;
+	background-color: #e8e8e8;
+	max-width: 1200px;
+	color: #355c7d;
+}
+
+.cuerpo-data {
+	max-width: 1140px;
+}
+
+.data-user {
+	background-color: #eee;
+	padding-top: 4%;
+	padding-right: 4%;
+	padding-bottom:  4%;
+}
+
+.data-foto{
+	text-align: center;
+
+}
+
+.cuerpo-inci {
+	color: #646464;
+	background-color: #eee;
+	padding-top: 2%;
+	padding-left: 4%;
+	padding-right: 4%;
+	padding-bottom:  2%;
+}
+
+.table-hover>tbody>tr:hover {
+    background-color: #e4e4e4;
+}
+
+.form-horizontal .form-group {
+    margin-right: 0px;
+    margin-left: 0px;
+}

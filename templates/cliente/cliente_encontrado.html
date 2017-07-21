@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Cliente{% endblock %}
+
+{% block username %}
+  {{user.usuario}}
+{% endblock %}
+
+{% block reporte-menu %}
+  {% if user.is_asesor == False %}
+  <li><a href="#" data-toggle="modal" data-target="#myModalReporte"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Reporte</a></li>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="body-content">
+
+	<div class="row title-data">
+		<h3><b><!--Cambiar Titulo-->Cliente</b></h3>
+	</div>
+
+
+
+	<div class="row cuerpo-data">
+		<div class="data-user">
+			<div class="row">
+
+				<!-- Block cliente-encontrado -->
+				<div class="col-sm-9 c-p-h-data" style="float:none;margin:0 auto">
+        {% if cliente %}
+					<div class="row row-profile">
+							<div class="form-horizontal">
+
+							{% if persona %}
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>DNI</label></div>
+											<div class="data">{{cliente.dni}}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-address-book-o" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>Nombre</label></div>
+											<div class="data">{{cliente.nombre}}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-address-book-o" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>Apellidos</label></div>
+											<div class="data">{{cliente.ape_pat}} {{cliente.ape_mat}}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-address-book-o" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+
+							{% else %}
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>RUC</label></div>
+											<div class="data">{{cliente.ruc}}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-address-book-o" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>Razón social</label></div>
+											<div class="data">{{cliente.razon_social}}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-address-book-o" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+							{% endif %}
+
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>Servicios</label></div>
+											<div class="data">{% for rec in cliente.servicio.all %}{{rec}}<br>{% endfor %}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-address-book-o" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+
+							{% if asesor %}
+              {% if no_mas_incidencia == False %}
+							<div class="profile-group-last">
+									<div class="row">
+										<div class="col-xs-12" style="text-align: center">
+											<a href="{% url 'incidencia:generar_incidencia' cliente.id%}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true" style="font-size: 13px"></i> Incidencia</a>
+										</div>
+									</div>
+							</div>
+              {% endif %}
+							{% endif %}
+							</div>
+					</div>
+				</div>
+				<!-- Block cliente-encontrado  -->
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row cuerpo-data">
+
+		<div class="cuerpo-inci">
+
+			<!-- Block cliente-encontrado  -->
+			<h4 style="color:#355c7d"><b>Ultimas incidencias</b></h4><br>
+			{% if incidencias %}
+			<div class="table-responsive">
+				<table class="table table-hover" style="color: #646464">
+						<thead>
+								<tr>
+									<th>N° Incidencia</th>
+                  <th>Fecha Generada</th>
+									<th>Estado</th>
+								</tr>
+						</thead>
+						<tbody>
+							  {% for inci in incidencias %}
+								<tr>
+									<td>{{inci.id}}</td>
+                  <td>{{inci.fecha_generada}}</td>
+									<td>{{inci.estado|yesno:"Cerrado,Generado" }}</td>
+									<td><a class="btn btn-info" href="{%url 'incidencia:buscar_incidencia' inci.id %}"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a></td>
+								</tr>
+								{% endfor %}
+						</tbody>
+				</table>
+			</div>
+      {% else %}
+        <div class="row text-center"><h2 style="color:#afaaaa;">Sin incidencias</h2></div>
+			{% endif %}
+			<!-- Block cliente-encontrado  -->
+
+		</div>
+
+  </div>
+	{% else %}
+		<div class="row text-center"><h2 style="color:#afaaaa;">Cliente no encontrado</h2></div>
+	{% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+
+{% block title %}Incidencia{% endblock %}
+
+{% block username %}
+  {{user.usuario}}
+{% endblock %}
+
+{% block reporte-menu %}
+  {% if user.is_asesor == False %}
+  <li><a href="#" data-toggle="modal" data-target="#myModalReporte"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Reporte</a></li>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="body-content">
+
+	<div class="row title-data">
+		<h3><b><!--Cambiar Titulo-->Incidencia</b></h3>
+		<div class=""></div>
+	</div>
+
+	<div class="row cuerpo-data">
+		<div class="data-user">
+			<div class="row">
+
+				<!-- Block cliente-encontrado -->
+				<div class="col-sm-9 c-p-h-data" style="float:none;margin:0 auto">
+
+					<div class="row row-profile">
+							<div class="form-horizontal">
+
+				{% if incidencia %}
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>N° Incidencia</label></div>
+											<div class="data">{{incidencia.id}}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-info-circle" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>{% if empresa %}RUC{% else %}DNI{% endif %} cliente</label></div>
+											<div class="data">{% if empresa %}{{incidencia.cliente.ruc}}{% else %}{{incidencia.cliente.dni}}{% endif %}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>{% if empresa %}Razón social cliente{% else %}Nombre cliente{% endif %}</label></div>
+											<div class="data">{% if empresa %}{{incidencia.cliente.razon_social}}{% else %}{{incidencia.cliente.nombre}} {{incidencia.cliente.ape_pat}}{% endif %}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>Asesor</label></div>
+											<div class="data">{{incidencia.cod_asesor.usuario.nombre}} {{incidencia.cod_asesor.usuario.ape_pat}} {{incidencia.cod_asesor.usuario.ape_mat}}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-user-circle" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>Fecha generada</label></div>
+											<div class="data">{{incidencia.fecha_generada}}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+
+							<!--Condiciones del django cuando se cierra consulta-->
+							{% if back %}
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>Back Office</label></div>
+											<div class="data">{{incidencia.cod_back.usuario.nombre}} {{incidencia.cod_back.usuario.ape_pat}} {{incidencia.cod_back.usuario.ape_mat}}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-user-circle" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>Fecha de cierre</label></div>
+											<div class="data">{{incidencia.fecha_cierre}}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+							{% endif %}
+							<!--CIERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRE-->
+
+							<div class="profile-group">
+									<div class="row">
+										<div class="col-xs-8 text-left">
+											<div><label>Estado</label></div>
+											<div class="data">{{incidencia.estado|yesno:"Cerrado,Generado"|safe}}</div>
+										</div>
+										<div class="col-xs-4 text-right">
+											<i class="fa fa-check-circle" aria-hidden="true"></i>
+										</div>
+									</div>
+							</div>
+
+							{% if cerrar %}
+								{% if not back %}
+							<div class="profile-group-last">
+									<div class="row">
+										<div class="col-xs-12" style="text-align: center">
+											<a href="{%url 'incidencia:cerrar_incidencia' incidencia.id %}" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true" style="font-size: 16px"></i> Terminar</a>
+										</div>
+									</div>
+							</div>
+								{% endif %}
+							{% endif %}
+
+							</div>
+					</div>
+				</div>
+				<!-- Block cliente-encontrado  -->
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row cuerpo-data">
+
+		<div class="cuerpo-inci">
+
+			<!-- Block cliente-encontrado  -->
+			<div class="row" style="padding-bottom:20px">
+				<h4 style="float:left;color:#355c7d"><b>Detalles</b></h4><br>
+				{% if not back %}
+				<div style="float:right;margin-top:-19px;"><a href="{% url 'incidencia:registrar_detalle' incidencia.id %}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true" style="font-size: 13px"></i> Detalle</a></div>
+				{% endif %}
+			</div>
+			{% if detalle %}
+			<div class="table-responsive">
+				<table class="table table-hover" style="color: #646464">
+						<thead>
+								<tr>
+									<th>Nombre del usuario</th>
+									<th>Fecha creación</th>
+									<th>Detalle</th>
+								</tr>
+						</thead>
+						<tbody>
+								{% for det in detalle %}
+								<tr>
+									<td>{{det.usuario.nombre}}</td>
+									<td>{{det.fecha_generada}}</td>
+									<td style="max-width: 200px;">{{det.detalle}}</td>
+								</tr>
+								{% endfor %}
+						</tbody>
+				</table>
+			</div>
+			{% else %}
+				<div class="row text-center"><h2 style="color:#afaaaa;">Sin detalles</h2></div>
+			{% endif %}
+			<!-- Block cliente-encontrado  -->
+
+		</div>
+
+	</div>
+	{% else %}
+		  <div class="row text-center"><h2 style="color:#afaaaa;">Incidencia no encontrada</h2></div>
+	{% endif %}
+</div>
+{% endblock %}
