@@ -1,4 +1,4 @@
-# Sistema para el control de incidencias
+# Sistema de control de incidencias
 Desarrollado en Django 10.6, haciendo uso de html5, css3, Javascript con Jquery, Boostrap y PostgreSQL.
 
 Descripción del Proceso: La empresa brinda servicios de internet, telefonía y cable, ya sea para hogares o empresas. El cliente notifica cuando ocurre un problema en el servicio, y esto es registrado por el Asesor quien toma nota de los detalles y inmediatamente asigna a un Back Office que atienda este problema, una vez solucionado esto el Back Office debe tomar nota de todos los detalles.
